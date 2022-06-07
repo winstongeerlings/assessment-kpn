@@ -1,24 +1,38 @@
-import logo from './logo.svg';
 import './App.css';
+import {useState} from "react";
+import VarListComponent from "./components/var-list";
+import InputListComponent from "./components/input-list";
+import OutputComponent from "./components/output";
 
 function App() {
+
+    const varInitialObject = {
+        "california": "los_angeles",
+        "netherlands": "amsterdam",
+        "germany": "berlin",
+        "france": "paris",
+        "japan": "tokyo",
+    };
+
+    const inputInitialObject = {
+        "location1": "los_angeles",
+        "location2": "$germany",
+        "location4": "rotterdam",
+        "location8": "$france",
+        "location9": "$netherlands",
+    };
+
+  const [varList, setVarList] = useState([]);
+  const [inputList, setInputList] = useState([]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <VarListComponent initialVars={varInitialObject} onUpdate={setVarList} />
+      <br/>
+      <InputListComponent initialInputs={inputInitialObject} onUpdate={setInputList} />
+      <br/>
+      <OutputComponent varList={varList} inputList={inputList}/>
+    </>
   );
 }
 
